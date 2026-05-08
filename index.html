@@ -1,1315 +1,1017 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mohan Sharma - Educational Leader</title>
-    <style>
-        /* Base Styles */
-        :root {
-            --primary: #1e40af;
-            --secondary: #3b82f6;
-            --accent: #93c5fd;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --gray: #64748b;
-            --transition: all 0.3s ease;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-        
-        a {
-            text-decoration: none;
-            color: var(--primary);
-            transition: var(--transition);
-        }
-        
-        a:hover {
-            color: var(--secondary);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-        
-        .section {
-            padding: 5rem 0;
-        }
-        
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -10px;
-            width: 60%;
-            height: 4px;
-            background: var(--secondary);
-            border-radius: 2px;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 0.8rem 1.5rem;
-            background: var(--primary);
-            color: white;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: var(--transition);
-            border: none;
-            cursor: pointer;
-        }
-        
-        .btn:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        /* Header Styles */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            transition: var(--transition);
-        }
-        
-        header.scrolled {
-            padding: 0.5rem 0;
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-        
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-        
-        .nav-links a {
-            font-weight: 500;
-            position: relative;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: -5px;
-            width: 0;
-            height: 2px;
-            background: var(--secondary);
-            transition: var(--transition);
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .mobile-menu {
-            display: none;
-            cursor: pointer;
-        }
-        
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 60%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--accent) 0%, var(--secondary) 100%);
-            clip-path: polygon(30% 0, 100% 0, 100% 100%, 0% 100%);
-            z-index: -1;
-            opacity: 0.1;
-        }
-        
-        .hero-content {
-            max-width: 650px;
-        }
-        
-        .hero-greeting {
-            font-size: 1.2rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeInUp 1s forwards;
-            animation-delay: 0.2s;
-        }
-        
-        .hero-name {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            opacity: 0;
-            animation: fadeInUp 1s forwards;
-            animation-delay: 0.4s;
-        }
-        
-        .hero-title {
-            font-size: 1.8rem;
-            color: var(--gray);
-            margin-bottom: 2rem;
-            opacity: 0;
-            animation: fadeInUp 1s forwards;
-            animation-delay: 0.6s;
-        }
-        
-        .hero-description {
-            font-size: 1.1rem;
-            margin-bottom: 2.5rem;
-            opacity: 0;
-            animation: fadeInUp 1s forwards;
-            animation-delay: 0.8s;
-        }
-        
-        .hero-btns {
-            display: flex;
-            gap: 1rem;
-            opacity: 0;
-            animation: fadeInUp 1s forwards;
-            animation-delay: 1s;
-        }
-        
-        .hero-social {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 2rem;
-            opacity: 0;
-            animation: fadeInUp 1s forwards;
-            animation-delay: 1.2s;
-        }
-        
-        .hero-social a {
-            font-size: 1.5rem;
-            color: var(--gray);
-            transition: var(--transition);
-        }
-        
-        .hero-social a:hover {
-            color: var(--primary);
-            transform: translateY(-3px);
-        }
-        
-        /* About Section */
-        .about {
-            background-color: #f1f5f9;
-        }
-        
-        .about-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .about-image {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: var(--transition);
-        }
-        
-        .about-image:hover img {
-            transform: scale(1.05);
-        }
-        
-        .about-text h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .about-text p {
-            margin-bottom: 1.5rem;
-        }
-        
-        .about-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: 2rem;
-        }
-        
-        .skill-tag {
-            padding: 0.5rem 1rem;
-            background: white;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-        
-        .skill-tag:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            background: var(--accent);
-            color: var(--primary);
-        }
-        
-        /* Projects Section */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .project-card {
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .project-image {
-            height: 200px;
-            overflow: hidden;
-            background-color: var(--accent);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .project-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-        
-        .project-card:hover .project-image img {
-            transform: scale(1.1);
-        }
-        
-        .project-content {
-            padding: 1.5rem;
-        }
-        
-        .project-title {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        
-        .project-tag {
-            font-size: 0.8rem;
-            padding: 0.2rem 0.8rem;
-            background: #e0e7ff;
-            color: var(--primary);
-            border-radius: 20px;
-        }
-        
-        .project-description {
-            color: var(--gray);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-        
-        .project-links {
-            display: flex;
-            gap: 1rem;
-        }
-        
-        .project-links a {
-            font-size: 0.9rem;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 0.3rem;
-        }
-        
-        /* Experience Section */
-        .experience {
-            background-color: #f1f5f9;
-        }
-        
-        .timeline {
-            position: relative;
-            max-width: 800px;
-            margin: 3rem auto 0;
-        }
-        
-        .timeline::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            width: 3px;
-            height: 100%;
-            background: var(--secondary);
-            transform: translateX(-50%);
-        }
-        
-        .timeline-item {
-            position: relative;
-            margin-bottom: 4rem;
-            width: calc(50% - 40px);
-        }
-        
-        .timeline-item:nth-child(odd) {
-            left: 0;
-        }
-        
-        .timeline-item:nth-child(even) {
-            left: calc(50% + 40px);
-        }
-        
-        .timeline-item::after {
-            content: '';
-            position: absolute;
-            top: 15px;
-            width: 20px;
-            height: 20px;
-            background: var(--secondary);
-            border: 4px solid white;
-            border-radius: 50%;
-        }
-        
-        .timeline-item:nth-child(odd)::after {
-            right: -50px;
-        }
-        
-        .timeline-item:nth-child(even)::after {
-            left: -50px;
-        }
-        
-        .timeline-content {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-        
-        .timeline-content:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .timeline-date {
-            color: var(--secondary);
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        .timeline-title {
-            font-size: 1.2rem;
-            margin-bottom: 0.3rem;
-        }
-        
-        .timeline-company {
-            color: var(--gray);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-        
-        .timeline-description {
-            font-size: 0.95rem;
-        }
-        
-        /* Awards Section */
-        .awards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-        
-        .award-card {
-            background: white;
-            border-radius: 10px;
-            padding: 1.5rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-            transition: var(--transition);
-        }
-        
-        .award-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
-        }
-        
-        .award-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--accent);
-            color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .award-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
-        
-        .award-date {
-            color: var(--secondary);
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-        
-        .award-description {
-            color: var(--gray);
-            font-size: 0.95rem;
-        }
-        
-        /* Contact Section */
-        .contact-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-        
-        .contact-info h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            color: var(--primary);
-        }
-        
-        .contact-details {
-            margin-top: 2rem;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-        
-        .contact-icon {
-            width: 45px;
-            height: 45px;
-            background: var(--accent);
-            color: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-        
-        .contact-text h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.2rem;
-        }
-        
-        .contact-form {
-            background: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-        }
-        
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 0.8rem 1rem;
-            border: 1px solid #e2e8f0;
-            border-radius: 5px;
-            transition: var(--transition);
-        }
-        
-        .form-control:focus {
-            outline: none;
-            border-color: var(--secondary);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
-        }
-        
-        textarea.form-control {
-            min-height: 150px;
-            resize: vertical;
-        }
-        
-        /* Footer */
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 3rem 0;
-            text-align: center;
-        }
-        
-        .footer-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: white;
-            margin-bottom: 1rem;
-        }
-        
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
-        }
-        
-        .footer-social a {
-            color: white;
-            font-size: 1.5rem;
-            transition: var(--transition);
-        }
-        
-        .footer-social a:hover {
-            color: var(--accent);
-            transform: translateY(-3px);
-        }
-        
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-links a {
-            color: var(--accent);
-        }
-        
-        .footer-copyright {
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Responsive Styles */
-        @media (max-width: 1024px) {
-            .section-title {
-                font-size: 2.2rem;
-            }
-            
-            .hero-name {
-                font-size: 3rem;
-            }
-            
-            .hero-title {
-                font-size: 1.5rem;
-            }
-            
-            .about-content, .contact-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-            
-            .about-image {
-                order: -1;
-            }
-            
-            .timeline::before {
-                left: 30px;
-            }
-            
-            .timeline-item {
-                width: calc(100% - 60px);
-                left: 60px !important;
-            }
-            
-            .timeline-item::after {
-                left: -30px !important;
-            }
-        }
-        
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
-            .section {
-                padding: 4rem 0;
-            }
-            
-            .hero-greeting {
-                font-size: 1rem;
-            }
-            
-            .hero-name {
-                font-size: 2.5rem;
-            }
-            
-            .hero-title {
-                font-size: 1.3rem;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .container {
-                padding: 0 1rem;
-            }
-            
-            .section-title {
-                font-size: 1.8rem;
-            }
-            
-            .hero-greeting {
-                font-size: 0.9rem;
-            }
-            
-            .hero-name {
-                font-size: 2rem;
-            }
-            
-            .hero-title {
-                font-size: 1.1rem;
-            }
-            
-            .hero-btns {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mohan Sharma — Educational Leader, Mathematics Educator, Fulbright Fellow</title>
+<meta name="description" content="Mohan Sharma — Principal, Mathematics educator, and Fulbright Fellow. Thirty years of teaching mathematics, training teachers, and building digital literacy in rural Himachal Pradesh." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  :root {
+    --bg: #FAF7F0;
+    --bg-alt: #F5F0E4;
+    --panel: #F0E9D6;
+    --surface: #FFFFFF;
+    --border: #E8DFCC;
+    --rule: #D9CFB8;
+    --forest: #1F4D3D;
+    --burgundy: #7A2E2E;
+    --gold: #B8860B;
+    --ink: #2A241B;
+    --muted: #6B5D4E;
+    --ultra-muted: #9C8E7A;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: linear-gradient(180deg, #FAF7F0 0%, #F5F0E4 100%);
+    background-attachment: fixed;
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.16 0 0 0 0 0.14 0 0 0 0 0.10 0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  .serif { font-family: 'Cormorant Garamond', Georgia, serif; font-weight: 600; letter-spacing: -0.01em; }
+  .mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+  .smallcaps {
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 600;
+    font-size: 0.78rem;
+  }
+  .mono-caps {
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+  }
+  .hairline { border-top: 1px solid var(--rule); }
+
+  /* Hero name */
+  .hero-name { font-size: clamp(48px, 8.5vw, 88px); line-height: 0.98; letter-spacing: -0.02em; }
+  .section-h { font-size: clamp(28px, 4.2vw, 42px); line-height: 1.1; letter-spacing: -0.01em; }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.25rem; border-radius: 999px; font-weight: 500; font-size: 0.92rem; transition: all .2s ease; }
+  .btn-primary { background: var(--forest); color: #F5F0E4; }
+  .btn-primary:hover { background: #163A2E; transform: translateY(-1px); }
+  .btn-ghost { border: 1px solid var(--burgundy); color: var(--burgundy); }
+  .btn-ghost:hover { background: var(--burgundy); color: #F5F0E4; }
+  .btn-cream { background: var(--bg-alt); color: var(--forest); }
+  .btn-cream:hover { background: #FFF; }
+  .btn-cream-ghost { border: 1px solid var(--bg-alt); color: var(--bg-alt); }
+  .btn-cream-ghost:hover { background: rgba(245,240,228,0.12); }
+
+  /* Card */
+  .card { background: var(--surface); border: 1px solid var(--border); box-shadow: 0 1px 2px rgba(42,36,27,0.04); transition: transform .25s ease, box-shadow .25s ease; }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(42,36,27,0.07); }
+
+  /* Tag chip */
+  .chip { display: inline-block; padding: 0.18rem 0.6rem; border: 1px solid var(--forest); color: var(--forest); border-radius: 999px; font-size: 0.72rem; letter-spacing: 0.02em; }
+
+  /* Grant badge */
+  .grant-badge {
+    background: linear-gradient(180deg, #D8A93A, #B8860B);
+    color: #2A241B;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 0.78rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(184,134,11,0.25);
+    border: 1px solid rgba(42,36,27,0.08);
+  }
+
+  /* Drop cap */
+  .dropcap::first-letter {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 4.4em;
+    float: left;
+    line-height: 0.86;
+    padding: 0.08em 0.12em 0 0;
+    color: var(--burgundy);
+  }
+
+  /* Pull quote */
+  .pullquote {
+    position: relative;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 500;
+    color: var(--burgundy);
+    font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.45;
+    padding-left: 2.4rem;
+  }
+  .pullquote::before {
+    content: "\201C";
+    position: absolute;
+    left: -0.2rem;
+    top: -0.5rem;
+    font-size: 4.5rem;
+    line-height: 1;
+    color: var(--burgundy);
+    opacity: 0.55;
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  /* Nav */
+  .nav-link { color: var(--ink); font-size: 0.92rem; font-weight: 500; padding: 0.4rem 0; position: relative; }
+  .nav-link:hover { color: var(--burgundy); }
+  .nav-link.active { color: var(--forest); }
+  .nav-link.active::after {
+    content: "";
+    position: absolute; left: 0; right: 0; bottom: -2px;
+    height: 1px; background: var(--forest);
+  }
+  .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--forest); display: inline-block; margin-right: 0.55rem; vertical-align: middle; }
+
+  /* Fade-up */
+  .fade-up { opacity: 0; transform: translateY(14px); transition: opacity .6s ease-out, transform .6s ease-out; }
+  .fade-up.in { opacity: 1; transform: translateY(0); }
+
+  /* Timeline */
+  .timeline { position: relative; }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 11px;
+    top: 0; bottom: 0;
+    width: 1px;
+    background: var(--rule);
+  }
+  @media (min-width: 768px) {
+    .timeline::before { left: 50%; transform: translateX(-0.5px); }
+  }
+  .tl-row { position: relative; }
+  .tl-dot {
+    position: absolute;
+    left: 4px;
+    top: 6px;
+    width: 15px; height: 15px;
+    border-radius: 50%;
+    background: var(--forest);
+    border: 3px solid var(--bg);
+    box-shadow: 0 0 0 1px var(--rule);
+  }
+  @media (min-width: 768px) {
+    .tl-dot { left: 50%; transform: translateX(-50%); }
+  }
+  .tl-card { background: var(--surface); border: 1px solid var(--border); padding: 1.25rem 1.4rem; border-radius: 4px; }
+
+  /* Toast */
+  .toast {
+    position: fixed; right: 1.5rem; bottom: 1.5rem;
+    background: var(--forest); color: var(--bg-alt);
+    padding: 0.85rem 1.2rem; border-radius: 6px;
+    box-shadow: 0 10px 40px rgba(31,77,61,0.25);
+    transform: translateY(20px); opacity: 0; pointer-events: none;
+    transition: all .3s ease;
+    z-index: 100;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* Caption */
+  .caption { font-style: italic; color: var(--muted); font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; }
+
+  /* Print */
+  @media print {
+    nav, footer, .no-print, .toast, #mobileMenu, body::before { display: none !important; }
+    body { background: white !important; color: black !important; font-family: Georgia, serif; }
+    .card, .tl-card { border: none !important; box-shadow: none !important; padding: 0.5rem 0 !important; background: transparent !important; }
+    section { page-break-inside: avoid; padding: 1rem 0 !important; }
+    .fade-up { opacity: 1 !important; transform: none !important; }
+    a { color: black !important; text-decoration: underline; }
+    .timeline::before { display: none; }
+    .tl-dot { display: none; }
+    .grid { display: block !important; }
+  }
+
+  /* Misc */
+  a { transition: color .2s ease; }
+  .link-burgundy { color: var(--burgundy); font-weight: 500; }
+  .link-burgundy:hover { color: #501B1B; }
+  .panel-warm { background: var(--panel); }
+  .ribbon-tile { padding: 1.5rem 1rem; }
+
+  ::selection { background: rgba(122,46,46,0.18); color: var(--ink); }
+
+  /* ===== DARK MODE ===== */
+  body.dark { background: linear-gradient(180deg, #1A1612 0%, #221D17 100%); color: #F0E9D6; }
+  body.dark::before {
+    opacity: 0.06;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 0.95 0 0 0 0 0.85 0 0 0 1 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  body.dark .bg-\[\#FAF7F0\]\/85 { background-color: rgba(26,22,18,0.88) !important; }
+  body.dark .bg-\[\#FAF7F0\] { background-color: #1A1612 !important; }
+  body.dark .panel-warm { background-color: #221D17 !important; }
+  body.dark .bg-\[\#1F4D3D\] { background-color: #14342A !important; }
+  body.dark .card { background-color: #221D17 !important; border-color: #3A3128 !important; box-shadow: 0 1px 2px rgba(0,0,0,0.4) !important; }
+  body.dark .card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.5) !important; }
+  body.dark .tl-card { background-color: #221D17 !important; border-color: #3A3128 !important; }
+  body.dark .border-\[\#D9CFB8\] { border-color: #3A3128 !important; }
+  body.dark .border-\[\#E8DFCC\] { border-color: #3A3128 !important; }
+  body.dark .border-\[\#1F4D3D\] { border-color: #8FBFA8 !important; }
+  body.dark .border-\[\#7A2E2E\] { border-color: #E5A0A0 !important; }
+  body.dark .hairline { border-top-color: #3A3128 !important; }
+  body.dark .text-\[\#2A241B\] { color: #F0E9D6 !important; }
+  body.dark .text-\[\#6B5D4E\] { color: #B5A893 !important; }
+  body.dark .text-\[\#9C8E7A\] { color: #8A7D68 !important; }
+  body.dark .text-\[\#1F4D3D\] { color: #8FBFA8 !important; }
+  body.dark .text-\[\#7A2E2E\] { color: #E5A0A0 !important; }
+  body.dark .text-\[\#F5F0E4\] { color: #F0E9D6 !important; }
+  body.dark .text-\[\#F5F0E4\]\/85 { color: rgba(240,233,214,0.85) !important; }
+  body.dark .nav-link { color: #F0E9D6; }
+  body.dark .nav-link:hover { color: #E5A0A0; }
+  body.dark .nav-link.active { color: #8FBFA8; }
+  body.dark .nav-link.active::after { background: #8FBFA8; }
+  body.dark .nav-dot { background: #8FBFA8; }
+  body.dark .btn-primary { background: #2A6048; color: #F0E9D6; }
+  body.dark .btn-primary:hover { background: #357556; }
+  body.dark .btn-ghost { border-color: #E5A0A0; color: #E5A0A0; }
+  body.dark .btn-ghost:hover { background: #E5A0A0; color: #1A1612; }
+  body.dark .btn-cream { background: #221D17; color: #F0E9D6; }
+  body.dark .btn-cream:hover { background: #2D2620; }
+  body.dark .btn-cream-ghost { border-color: #F0E9D6; color: #F0E9D6; }
+  body.dark .chip { border-color: #8FBFA8; color: #8FBFA8; }
+  body.dark .link-burgundy { color: #E5A0A0; }
+  body.dark .link-burgundy:hover { color: #F2BCBC; }
+  body.dark .pullquote, body.dark .pullquote::before { color: #E5A0A0; }
+  body.dark .dropcap::first-letter { color: #E5A0A0; }
+  body.dark .tl-dot { background: #8FBFA8; border-color: #1A1612; box-shadow: 0 0 0 1px #3A3128; }
+  body.dark .timeline::before { background: #3A3128; }
+  body.dark .grant-badge { background: linear-gradient(180deg, #E0B040, #B8860B); color: #1A1612; box-shadow: 0 2px 8px rgba(184,134,11,0.35); }
+  body.dark input, body.dark textarea { color: #F0E9D6; }
+  body.dark input:focus, body.dark textarea:focus { border-color: #8FBFA8 !important; }
+  body.dark .toast { background: #2A6048; color: #F0E9D6; }
+
+  /* Theme toggle */
+  .theme-toggle { width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; color: var(--ink); transition: all .2s ease; }
+  .theme-toggle:hover { background: rgba(122,46,46,0.08); color: var(--burgundy); }
+  body.dark .theme-toggle { color: #F0E9D6; }
+  body.dark .theme-toggle:hover { background: rgba(229,160,160,0.12); color: #E5A0A0; }
+  .theme-toggle .sun { display: none; }
+  .theme-toggle .moon { display: block; }
+  body.dark .theme-toggle .sun { display: block; }
+  body.dark .theme-toggle .moon { display: none; }
+</style>
 </head>
-<body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#" class="logo">Mohan Sharma</a>
-                <div class="nav-links">
-                    <a href="#about">About</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#experience">Experience</a>
-                    <a href="#awards">Awards</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <div class="mobile-menu">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </svg>
-                </div>
-            </nav>
-        </div>
-    </header>
+<body class="relative">
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content">
-                <p class="hero-greeting">Welcome, I'm</p>
-                <h1 class="hero-name">Mohan Sharma</h1>
-                <h2 class="hero-title">Educational Leader & Mathematics Teacher</h2>
-                <p class="hero-description">
-                    A dynamic and resourceful Principal with 29 years of Mathematics teaching experience. Fulbright Fellow, NCERT-recognized Valuable Contributor, and State Teacher Award recipient dedicated to creating productive learning environments.
-                </p>
-                <div class="hero-btns">
-                    <a href="#projects" class="btn">View My Projects</a>
-                    <a href="#contact" class="btn btn-outline">Get In Touch</a>
-                </div>
-                <div class="hero-social">
-                    <a href="https://www.linkedin.com/in/mohan-sharma-022750100/" title="LinkedIn" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                    </a>
-                    <a href="https://www.facebook.com/libra.mohan/" title="Facebook" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                        </svg>
-                    </a>
-                    <a href="https://www.ggsssindora.in/" title="Website" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="2" y1="12" x2="22" y2="12"></line>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                        </svg>
-                    </a>
-                    <a href="mailto:mohanhimachal@gmail.com" title="Email">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ============ NAVBAR ============ -->
+<nav class="sticky top-0 z-40 backdrop-blur-md bg-[#FAF7F0]/85 border-b border-[#D9CFB8] no-print">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 h-[62px] flex items-center justify-between">
+    <a href="#top" class="flex items-center">
+      <span class="nav-dot"></span>
+      <span class="serif text-[20px] text-[#2A241B]">Mohan Sharma</span>
+    </a>
+    <div class="hidden lg:flex items-center gap-7">
+      <a href="#about" class="nav-link" data-nav>About</a>
+      <a href="#projects" class="nav-link" data-nav>Projects</a>
+      <a href="#publications" class="nav-link" data-nav>Publications</a>
+      <a href="#experience" class="nav-link" data-nav>Experience</a>
+      <a href="#awards" class="nav-link" data-nav>Awards</a>
+      <a href="#education" class="nav-link" data-nav>Education</a>
+      <a href="#contact" class="nav-link" data-nav>Contact</a>
+    </div>
+    <div class="flex items-center gap-2">
+      <button id="themeToggle" class="theme-toggle no-print" aria-label="Toggle dark mode" title="Toggle theme">
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+      <a href="/Mohan_Sharma_CV.pdf" class="hidden md:inline-flex items-center gap-2 text-[0.85rem] px-3.5 py-1.5 rounded-full border border-[#1F4D3D] text-[#1F4D3D] hover:bg-[#1F4D3D] hover:text-[#F5F0E4] transition-all">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download CV
+      </a>
+      <button id="navToggle" class="lg:hidden p-2 text-[#2A241B]" aria-label="Open menu">
+        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="lg:hidden hidden border-t border-[#D9CFB8] bg-[#FAF7F0]">
+    <div class="flex flex-col px-6 py-4 gap-3">
+      <a href="#about" class="nav-link mob-link">About</a>
+      <a href="#projects" class="nav-link mob-link">Projects</a>
+      <a href="#publications" class="nav-link mob-link">Publications</a>
+      <a href="#experience" class="nav-link mob-link">Experience</a>
+      <a href="#awards" class="nav-link mob-link">Awards</a>
+      <a href="#education" class="nav-link mob-link">Education</a>
+      <a href="#contact" class="nav-link mob-link">Contact</a>
+      <a href="/Mohan_Sharma_CV.pdf" class="mob-link text-[#1F4D3D] font-medium">Download CV ↓</a>
+    </div>
+  </div>
+</nav>
 
-    <!-- About Section -->
-    <section class="section about" id="about">
-        <div class="container">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Professional Journey</h3>
-                    <p>
-                        As a dedicated educational leader with 29 years of experience teaching Mathematics, I've devoted my career to creating engaging learning environments that drive student progress and achievement.
-                    </p>
-                    <p>
-                        My journey in education has been marked by numerous milestones, including being recognized as a Fulbright Fellow in 2020, receiving the State Teacher Award in 2024, and being acknowledged as a Valuable Contributor in Mathematics at the National Level by NCERT.
-                    </p>
-                    <p>
-                        I'm passionate about advancing digital literacy among rural students and have guided over 6000 educators across Himachal Pradesh as a resource person. My focus on ICT integration in classrooms, innovative teaching strategies, and teacher training has helped transform educational practices in my region.
-                    </p>
-                    <div class="about-skills">
-                        <span class="skill-tag">Educational Leadership</span>
-                        <span class="skill-tag">Mathematics Education</span>
-                        <span class="skill-tag">ICT Integration</span>
-                        <span class="skill-tag">Teacher Training</span>
-                        <span class="skill-tag">Project Management</span>
-                        <span class="skill-tag">Research</span>
-                        <span class="skill-tag">Curriculum Development</span>
-                        <span class="skill-tag">Hindi</span>
-                        <span class="skill-tag">English</span>
-                        <span class="skill-tag">Punjabi</span>
-                        <span class="skill-tag">German (Basic)</span>
-                    </div>
-                </div>
-                <div class="about-image">
-                    <img src="mohan_pic4.jpg" alt="Mohan Sharma">
-                </div>
-            </div>
-        </div>
-    </section>
+<a id="top"></a>
 
-    <!-- Projects Section -->
-    <section class="section projects" id="projects">
-        <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <p>Here are some of the impactful educational projects I've led, each focused on empowering students and improving learning outcomes.</p>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                        </svg>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Developing Foundational Technical Skills for The Underprivileged Girls</h3>
-                        <div class="project-tags">
-                            <span class="project-tag">Technical Education</span>
-                            <span class="project-tag">Girl Empowerment</span>
-                            <span class="project-tag">Digital Literacy</span>
-                        </div>
-                        <p class="project-description">
-                            Empowered 177 girls with foundational technical skills such as basic system operations and essential software. The project's first phase focused on 77 girls in grades 6-8 and received international recognition with a $2500 grant.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://www.cienachallenge.org/en/custom/projects/view/13999" title="Project Details" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                    <polyline points="15 3 21 3 21 9"></polyline>
-                                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                                </svg>
-                                View Project
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 3a6.364 6.364 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
-                            <path d="M12 3c.236 2.544 1.45 5.002 3.536 7.088a9.004 9.004 0 0 0 2.16 1.683"></path>
-                            <path d="M12 3c-.236 2.544-1.45 5.002-3.536 7.088a9.004 9.004 0 0 1-2.16 1.683"></path>
-                        </svg>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">How Can I Care Earth To Ozone Layer</h3>
-                        <div class="project-tags">
-                            <span class="project-tag">Environmental Education</span>
-                            <span class="project-tag">Student-Led</span>
-                            <span class="project-tag">Community Awareness</span>
-                        </div>
-                        <p class="project-description">
-                            Coordinated a student-led environmental project focusing on raising awareness about the ozone layer and implementing local actions to reduce its depletion. Led initiatives to educate students and the community about environmental conservation.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://www.cienachallenge.org/en/custom/projects/view/18257" title="Project Details" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                    <polyline points="15 3 21 3 21 9"></polyline>
-                                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                                </svg>
-                                View Project
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M19 10V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v3"></path>
-                            <path d="M1 10h22"></path>
-                            <path d="M21 10v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7"></path>
-                            <path d="M8 2v2"></path>
-                            <path d="M16 2v2"></path>
-                        </svg>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Bag for Women's Safety</h3>
-                        <div class="project-tags">
-                            <span class="project-tag">Innovation</span>
-                            <span class="project-tag">Women's Safety</span>
-                            <span class="project-tag">Technology</span>
-                        </div>
-                        <p class="project-description">
-                            Mentored a 12th-grade student's project aimed at developing a safety-supported bag for women, integrating technology for real-time alerts and security in case of unforeseen circumstances. Guided the development of innovative safety features.
-                        </p>
-                        <div class="project-links">
-                            <a href="https://digitalpromise.org/2024/05/21/announcing-the-2024-youthmade-festival-amplify-grant-recipients/" title="Project Details" target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                    <polyline points="15 3 21 3 21 9"></polyline>
-                                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                                </svg>
-                                View Project
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 4 -->
-                <div class="project-card">
-                    <div class="project-image">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 2v8"></path>
-                            <path d="m4.93 10.93 1.41 1.41"></path>
-                            <path d="M2 18h2"></path>
-                            <path d="M20 18h2"></path>
-                            <path d="m19.07 10.93-1.41 1.41"></path>
-                            <path d="M22 22H2"></path>
-                            <path d="M16 6h0"></path>
-                            <path d="M18 12h0"></path>
-                            <path d="M8 6h0"></path>
-                            <path d="M6 12h0"></path>
-                            <path d="M16 18a4 4 0 0 0-8 0"></path>
-                        </svg>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Herbal Green for Sustainable Life And Well Being</h3>
-                        <div class="project-tags">
-                            <span class="project-tag">Herbal Remedies</span>
-                            <span class="project-tag">Sustainability</span>
-                            <span class="project-tag">Well-being</span>
-                        </div>
-                        <p class="project-description">
-                            This project explores the power of herbal plants and understanding herbal remedies to promote healthier and happier lives connected to nature. Funded by Digital Promise Organisation USA with a $750 grant in 2025.
-                        </p>
-                        <div class="project-links">
-                            <a href="#" title="Project Details">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                                    <polyline points="15 3 21 3 21 9"></polyline>
-                                    <line x1="10" y1="14" x2="21" y2="3"></line>
-                                </svg>
-                                Coming Soon
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ============ HERO ============ -->
+<header class="relative max-w-7xl mx-auto px-5 md:px-8 pt-12 md:pt-20 pb-16 md:pb-24">
+  <div class="grid md:grid-cols-5 gap-10 md:gap-14 items-center">
+    <div class="md:col-span-3 fade-up">
+      <p class="smallcaps text-[#1F4D3D] mb-7">Educational Leader · Mathematics Educator · Fulbright Fellow</p>
+      <h1 class="serif hero-name text-[#2A241B] mb-6">Mohan Sharma</h1>
+      <p class="serif italic text-[#6B5D4E] text-[20px] md:text-[22px] leading-snug max-w-2xl mb-10" style="font-weight:500;">
+        Thirty years of teaching mathematics, training teachers, and building digital literacy in rural Himachal Pradesh.
+      </p>
+      <div class="flex flex-wrap items-center gap-x-3 gap-y-3 mb-10">
+        <span class="mono-caps text-[#1F4D3D]">30 Years Education</span>
+        <span class="text-[#D9CFB8]">·</span>
+        <span class="mono-caps text-[#1F4D3D]">6,700+ Teachers Trained</span>
+        <span class="text-[#D9CFB8]">·</span>
+        <span class="mono-caps text-[#1F4D3D]">4 International Grants</span>
+        <span class="text-[#D9CFB8]">·</span>
+        <span class="mono-caps text-[#1F4D3D]">5 Publications</span>
+      </div>
+      <div class="flex flex-wrap gap-3 mb-8">
+        <a href="#projects" class="btn btn-primary">Read my work →</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+      <div class="flex items-center gap-5 text-[#6B5D4E]">
+        <a href="https://www.linkedin.com" aria-label="LinkedIn" class="hover:text-[#7A2E2E]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="mailto:mohanhimachal@gmail.com" aria-label="Email" class="hover:text-[#7A2E2E]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+        <a href="https://www.facebook.com" aria-label="Facebook" class="hover:text-[#7A2E2E]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://mohanhimachal.github.io" aria-label="School Website" class="hover:text-[#7A2E2E]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="md:col-span-2 fade-up">
+      <div class="relative">
+        <div class="absolute -inset-3 bg-[#F0E9D6] rounded-[18px] -z-10 transform rotate-[-1deg]"></div>
+        <img src="https://mohanhimachal.github.io/mohan_pic4.jpg"
+             onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&h=750&fit=crop';"
+             alt="Mohan Sharma portrait"
+             class="w-full h-auto rounded-[14px] shadow-[0_18px_50px_-15px_rgba(42,36,27,0.35)] border border-[#E8DFCC]" />
+      </div>
+      <p class="caption text-center mt-4">Indora, Kangra · Himachal Pradesh, India</p>
+    </div>
+  </div>
+</header>
 
-    <!-- Experience Section -->
-    <section class="section experience" id="experience">
-        <div class="container">
-            <h2 class="section-title">Experience</h2>
-            <div class="timeline">
-                <!-- Experience 1 -->
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">Dec 2022 - Present</div>
-                        <h3 class="timeline-title">Principal</h3>
-                        <p class="timeline-company">Government Girls Senior Secondary School Indora, Kangra</p>
-                        <p class="timeline-description">
-                            Leading the school's transformation through ICT integration and project-based learning. Also served as Principal Cum Block Project Officer at Govt Model Sr. Sec. School Indora from January to September 2024.
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Experience 2 -->
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2021 - 2022</div>
-                        <h3 class="timeline-title">Lecturer in Mathematics</h3>
-                        <p class="timeline-company">Government Senior Secondary School Makroli, Kangra</p>
-                        <p class="timeline-description">
-                            Integrated technology in the classroom and facilitated initial exposures of digital literacy among rural students, enhancing their learning experience through innovative teaching methods.
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Experience 3 -->
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2012 - 2021</div>
-                        <h3 class="timeline-title">Lecturer in Mathematics</h3>
-                        <p class="timeline-company">Government Model S.M. Senior Secondary School Indora, Kangra</p>
-                        <p class="timeline-description">
-                            Established a virtual classroom, conducted over 75 Video Conferencing Sessions, and organized state-level online Math Olympiads. Introduced rural students to technological tools, connecting them with global educationists.
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Experience 4 -->
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">2001 - 2012</div>
-                        <h3 class="timeline-title">Lecturer in Mathematics</h3>
-                        <p class="timeline-company">Government Senior Secondary School Giora, Kangra</p>
-                        <p class="timeline-description">
-                            Developed an ICT lab in collaboration with the education department and trained over 150 students annually in basic computer operations, enhancing their digital literacy and technological skills.
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Experience 5 -->
-                <div class="timeline-item">
-                    <div class="timeline-content">
-                        <div class="timeline-date">1995 - 2001</div>
-                        <h3 class="timeline-title">Mathematics Teacher</h3>
-                        <p class="timeline-company">Various Schools in Himachal Pradesh</p>
-                        <p class="timeline-description">
-                            Served at GSSS Masroond, Chamba (1999-2001) focusing on real-life correlation in Mathematics and learning gaps in rural schools. Previously worked at JNV Sarol, Chamba (1995-1999) mentoring students for national-level competitive exams.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Awards Section -->
-    <section class="section" id="awards">
-        <div class="container">
-            <h2 class="section-title">Awards & Recognitions</h2>
-            <p>My commitment to educational excellence has been recognized through various prestigious awards and fellowships.</p>
-            <div class="awards-grid">
-                <!-- Award 1 -->
-                <div class="award-card">
-                    <div class="award-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M8.21 13.89 7 23l5-3 5 3-1.21-9.12"></path>
-                            <path d="M15 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="award-title">State Teacher Award</h3>
-                    <p class="award-date">September 2024</p>
-                    <p class="award-description">
-                        Awarded by the Himachal Pradesh Government for outstanding contributions in ICT integration in the classroom, teacher training, and innovative teaching strategies.
-                    </p>
-                </div>
-                
-                <!-- Award 2 -->
-                <div class="award-card">
-                    <div class="award-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 8a2.83 2.83 0 0 0 4 4 4 4 0 1 1-4-4"></path>
-                            <path d="M12 2v2"></path>
-                            <path d="M12 20v2"></path>
-                            <path d="m4.9 4.9 1.4 1.4"></path>
-                            <path d="m17.7 17.7 1.4 1.4"></path>
-                            <path d="M2 12h2"></path>
-                            <path d="M20 12h2"></path>
-                            <path d="m6.3 17.7-1.4 1.4"></path>
-                            <path d="m19.1 4.9-1.4 1.4"></path>
-                        </svg>
-                    </div>
-                    <h3 class="award-title">Fulbright Fellowship</h3>
-                    <p class="award-date">January 2020</p>
-                    <p class="award-description">
-                        Awarded the Fulbright Teaching Excellence and Achievement Program for 6 weeks in the USA by the US Government, enhancing international educational collaboration.
-                    </p>
-                </div>
-                
-                <!-- Award 3 -->
-                <div class="award-card">
-                    <div class="award-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M12 20h9"></path>
-                            <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
-                            <path d="m16 16 4.3-4.3"></path>
-                        </svg>
-                    </div>
-                    <h3 class="award-title">NCERT Recognition</h3>
-                    <p class="award-date">November 2020</p>
-                    <p class="award-description">
-                        Recognized as a Valuable Contributor at National Level as a member of the National Mathematics Syllabi Review Committee at Higher Secondary Level by NCERT, New Delhi.
-                    </p>
-                </div>
-                
-                <!-- Award 4 -->
-                <div class="award-card">
-                    <div class="award-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <rect width="18" height="18" x="3" y="3" rx="2"></rect>
-                            <path d="M9 15V9l3 3 3-3v6"></path>
-                        </svg>
-                    </div>
-                    <h3 class="award-title">State Government Fellowship</h3>
-                    <p class="award-date">April 2024</p>
-                    <p class="award-description">
-                        Selected for a workshop at the Principals Academy Singapore, focusing on 21st Century Teaching and Learning Practices in the Classroom.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ============ IMPACT RIBBON ============ -->
+<section class="border-y border-[#D9CFB8] panel-warm fade-up">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 grid grid-cols-2 md:grid-cols-4 divide-y md:divide-y-0 md:divide-x divide-[#D9CFB8]">
+    <div class="ribbon-tile text-center">
+      <div class="serif text-[#1F4D3D] text-[44px] md:text-[56px] leading-none mono" style="font-family:'JetBrains Mono', monospace; font-weight:500;">30+</div>
+      <p class="smallcaps text-[#6B5D4E] mt-3">Years in Education</p>
+    </div>
+    <div class="ribbon-tile text-center">
+      <div class="text-[#1F4D3D] text-[44px] md:text-[56px] leading-none" style="font-family:'JetBrains Mono', monospace; font-weight:500;">6,700+</div>
+      <p class="smallcaps text-[#6B5D4E] mt-3">Educators Trained</p>
+    </div>
+    <div class="ribbon-tile text-center">
+      <div class="text-[#1F4D3D] text-[44px] md:text-[56px] leading-none" style="font-family:'JetBrains Mono', monospace; font-weight:500;">$6,250</div>
+      <p class="smallcaps text-[#6B5D4E] mt-3">In International Grants</p>
+    </div>
+    <div class="ribbon-tile text-center">
+      <div class="text-[#1F4D3D] text-[44px] md:text-[56px] leading-none" style="font-family:'JetBrains Mono', monospace; font-weight:500;">7</div>
+      <p class="smallcaps text-[#6B5D4E] mt-3">International Recognitions</p>
+    </div>
+  </div>
+</section>
 
-    <!-- Contact Section -->
-    <section class="section contact" id="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Let's connect</h3>
-                    <p>
-                        I'm interested in educational collaborations, speaking opportunities, and sharing insights on mathematics education and technology integration in classrooms. Feel free to reach out if you have questions or would like to discuss potential collaborations.
-                    </p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                                    <polyline points="22,6 12,13 2,6"></polyline>
-                                </svg>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Email</h4>
-                                <p>mohanhimachal@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                                </svg>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Phone</h4>
-                                <p>+91-9816262609</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                                    <circle cx="12" cy="10" r="3"></circle>
-                                </svg>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Location</h4>
-                                <p>Indora, Kangra, Himachal Pradesh, India</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" placeholder="Your Message" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Send Message</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+<!-- ============ ABOUT ============ -->
+<section id="about" class="max-w-3xl mx-auto px-5 md:px-8 py-20 md:py-28">
+  <div class="text-center mb-12 fade-up">
+    <p class="smallcaps text-[#1F4D3D]">About</p>
+    <h2 class="serif section-h text-[#2A241B] mt-3 italic">Three decades. One mission.</h2>
+  </div>
+  <div class="space-y-7 text-[#2A241B] text-[17px] fade-up">
+    <p class="dropcap">For thirty years, Mohan Sharma has taught mathematics in the schools of Himachal Pradesh — first as a young TGT at Jawahar Navodaya Vidyalaya in 1995, and today as Principal of Government Girls Senior Secondary School Indora. The classrooms have changed. The mission hasn't: bring the best of mathematics, technology, and global thinking to students who would otherwise never encounter them.</p>
+    <p>Along the way: a Fulbright Fellowship to the University of North Carolina Wilmington in 2020. A seat on the NCERT National Mathematics Syllabi Review Committee. A State Teacher Award from the Himachal Pradesh Government in 2024 for ICT integration and teacher training. Four international project grants funding student-led work on technical skills, environmental awareness, women's safety, and herbal medicine. More than 6,700 teachers trained as a resource person under SSA, RMSA, NISHTHA, NIPUN, and STARS programs.</p>
+    <p>What ties it together is a quiet conviction: a girl in a rural school in Kangra deserves the same quality of mathematics, the same exposure to technology, and the same belief in her own capability as any student anywhere in the world. The rest is just the work of making that true.</p>
+  </div>
+  <div class="mt-12 fade-up">
+    <p class="pullquote">My students don't need to leave Kangra to think globally. They just need someone to open the door.</p>
+  </div>
+</section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">Mohan Sharma</div>
-                <p>Educational Leader & Mathematics Teacher with 29 years of experience</p>
-                <div class="footer-social">
-                    <a href="https://www.linkedin.com/in/mohan-sharma-022750100/" title="LinkedIn" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                            <rect x="2" y="9" width="4" height="12"></rect>
-                            <circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                    </a>
-                    <a href="https://www.facebook.com/libra.mohan/" title="Facebook" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                        </svg>
-                    </a>
-                    <a href="https://www.ggsssindora.in/" title="Website" target="_blank">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <line x1="2" y1="12" x2="22" y2="12"></line>
-                            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
-                        </svg>
-                    </a>
-                    <a href="mailto:mohanhimachal@gmail.com" title="Email">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                            <polyline points="22,6 12,13 2,6"></polyline>
-                        </svg>
-                    </a>
-                </div>
-                <div class="footer-links">
-                    <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#experience">Experience</a>
-                    <a href="#awards">Awards</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <p class="footer-copyright">© 2025 Mohan Sharma. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+<div class="hairline max-w-7xl mx-auto"></div>
 
-    <!-- JavaScript -->
-    <script>
-        // Add scrolled class to header on scroll
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Mobile menu toggle
-        document.querySelector('.mobile-menu').addEventListener('click', function() {
-            const navLinks = document.querySelector('.nav-links');
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-        });
-    </script>
+<!-- ============ PROJECTS ============ -->
+<section id="projects" class="max-w-7xl mx-auto px-5 md:px-8 py-20 md:py-28">
+  <div class="mb-12 fade-up">
+    <p class="smallcaps text-[#1F4D3D]">Student-led Projects · 2023–2025</p>
+    <h2 class="serif section-h text-[#2A241B] mt-3 italic max-w-3xl">Four projects. Funded internationally. Led by students.</h2>
+    <p class="text-[#6B5D4E] mt-4 max-w-2xl">Each project below was student-driven, mentor-supported, and recognized with international funding.</p>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+    <!-- Project 1 -->
+    <article class="card rounded-[6px] overflow-hidden fade-up">
+      <div class="relative h-[220px] overflow-hidden">
+        <img src="https://skipsolabs-digital-promise.s3.amazonaws.com/frontend/section/projects/13999/af39872b48e84d05ca46.jpg" alt="Girls learning ICT skills at GGSSS Indora" class="w-full h-full object-cover" />
+        <div class="absolute top-4 right-4"><span class="grant-badge">$2,500</span></div>
+      </div>
+      <div class="p-6 md:p-7">
+        <h3 class="serif text-[24px] text-[#2A241B] leading-tight">Developing Foundational Technical Skills for Underprivileged Girls</h3>
+        <div class="flex flex-wrap gap-1.5 mt-4">
+          <span class="chip">digital literacy</span>
+          <span class="chip">girl empowerment</span>
+          <span class="chip">ICT</span>
+        </div>
+        <p class="text-[#2A241B] mt-4 text-[15px]">Equipped 177 girls at GGSSS Indora with foundational ICT skills — basic system operations, Word, Paint, essential software. The first phase reached 77 girls in grades 6–8. Recognized by Ciena Sustainable Solutions Challenge with a $2,500 grant.</p>
+        <div class="flex items-center justify-between mt-6 pt-5 border-t border-[#E8DFCC]">
+          <span class="mono-caps text-[#9C8E7A]">April 2023</span>
+          <a href="https://www.cienachallenge.org/en/custom/projects/view/13999" target="_blank" rel="noopener" class="link-burgundy text-[14px]">View project →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Project 2 -->
+    <article class="card rounded-[6px] overflow-hidden fade-up">
+      <div class="relative h-[220px] overflow-hidden">
+        <img src="https://skipsolabs-digital-promise.s3.amazonaws.com/frontend/section/projects/18257/7ebda29fcf1143c07208.jpg" alt="Ozone layer awareness student project" class="w-full h-full object-cover" />
+        <div class="absolute top-4 right-4"><span class="grant-badge">$2,500</span></div>
+      </div>
+      <div class="p-6 md:p-7">
+        <h3 class="serif text-[24px] text-[#2A241B] leading-tight">How Can I Care Earth To Ozone Layer</h3>
+        <div class="flex flex-wrap gap-1.5 mt-4">
+          <span class="chip">environment</span>
+          <span class="chip">student-led</span>
+          <span class="chip">community awareness</span>
+        </div>
+        <p class="text-[#2A241B] mt-4 text-[15px]">Coordinated a student-led environmental project raising awareness about ozone layer depletion. Students designed local actions to reduce environmental impact and educate their community on conservation. Recognized by Digital Promise Organization.</p>
+        <div class="flex items-center justify-between mt-6 pt-5 border-t border-[#E8DFCC]">
+          <span class="mono-caps text-[#9C8E7A]">April 2024</span>
+          <a href="https://www.cienachallenge.org/en/custom/projects/view/18257" target="_blank" rel="noopener" class="link-burgundy text-[14px]">View project →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Project 3 -->
+    <article class="card rounded-[6px] overflow-hidden fade-up">
+      <div class="relative h-[220px] overflow-hidden">
+        <img src="images/amplify-grant.jpg" alt="YouthMade Festival Amplify Grant — Bag for Women's Safety" class="w-full h-full object-cover" />
+        <div class="absolute top-4 right-4"><span class="grant-badge">$500</span></div>
+      </div>
+      <div class="p-6 md:p-7">
+        <h3 class="serif text-[24px] text-[#2A241B] leading-tight">Bag for Women's Safety</h3>
+        <div class="flex flex-wrap gap-1.5 mt-4">
+          <span class="chip">safety tech</span>
+          <span class="chip">innovation</span>
+          <span class="chip">women</span>
+        </div>
+        <p class="text-[#2A241B] mt-4 text-[15px]">Mentored a Class 12 student designing a safety-supported bag with real-time alerts and security features for women in vulnerable situations. Selected for the 2024 YouthMade Festival Amplify Grant by Digital Promise.</p>
+        <div class="flex items-center justify-between mt-6 pt-5 border-t border-[#E8DFCC]">
+          <span class="mono-caps text-[#9C8E7A]">May 2024</span>
+          <a href="https://digitalpromise.org/2024/05/21/announcing-the-2024-youthmade-festival-amplify-grant-recipients/" target="_blank" rel="noopener" class="link-burgundy text-[14px]">View project →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Project 4 -->
+    <article class="card rounded-[6px] overflow-hidden fade-up">
+      <div class="relative h-[220px] overflow-hidden">
+        <img src="https://skipsolabs-digital-promise.s3.amazonaws.com/frontend/section/projects/26411/e4d6dab2297247b0f6ab.jpg" alt="Herbal Green for Sustainable Life and Well-Being project" class="w-full h-full object-cover" />
+        <div class="absolute top-4 right-4"><span class="grant-badge">$750</span></div>
+      </div>
+      <div class="p-6 md:p-7">
+        <h3 class="serif text-[24px] text-[#2A241B] leading-tight">Herbal Green for Sustainable Life and Well-Being</h3>
+        <div class="flex flex-wrap gap-1.5 mt-4">
+          <span class="chip">ayurveda</span>
+          <span class="chip">biodiversity</span>
+          <span class="chip">traditional knowledge</span>
+        </div>
+        <p class="text-[#2A241B] mt-4 text-[15px]">Guided 12 girls from rural India in researching and documenting the medicinal value of local herbal plants — drawing from Ayurveda and traditional Indian medicine. Students raised community awareness about natural remedies and promoted environmental biodiversity. YouthMade Festival Amplify Grant 2025.</p>
+        <div class="flex items-center justify-between mt-6 pt-5 border-t border-[#E8DFCC]">
+          <span class="mono-caps text-[#9C8E7A]">May 2025</span>
+          <a href="https://www.cienachallenge.org/en/custom/projects/view/26411" target="_blank" rel="noopener" class="link-burgundy text-[14px]">View project →</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<div class="hairline max-w-7xl mx-auto"></div>
+
+<!-- ============ AWARDS ============ -->
+<section id="awards" class="max-w-7xl mx-auto px-5 md:px-8 py-20 md:py-28">
+  <div class="mb-12 fade-up">
+    <p class="smallcaps text-[#1F4D3D]">Awards & Fellowships</p>
+    <h2 class="serif section-h text-[#2A241B] mt-3 italic max-w-3xl">Recognized at the state, national, and international level.</h2>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-6">
+    <!-- 1 -->
+    <div class="card rounded-[6px] p-7 fade-up">
+      <div class="flex items-start gap-5">
+        <div class="text-[#1F4D3D] shrink-0 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between gap-3 flex-wrap">
+            <h3 class="serif text-[22px] text-[#2A241B]">Fulbright Fellowship</h3>
+            <span class="mono-caps text-[#9C8E7A]">January 2020</span>
+          </div>
+          <p class="text-[#2A241B] mt-2 text-[15px]">Fulbright Teaching Excellence and Achievement Program — six weeks at University of North Carolina Wilmington, USA. Awarded by the United States Government.</p>
+        </div>
+      </div>
+    </div>
+    <!-- 2 -->
+    <div class="card rounded-[6px] p-7 fade-up">
+      <div class="flex items-start gap-5">
+        <div class="text-[#1F4D3D] shrink-0 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55.47.98.97 1.21C12.15 18.75 13 19.24 13 20"/><path d="M14 14.66V17c0 .55-.47.98-.97 1.21C11.85 18.75 11 19.24 11 20"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between gap-3 flex-wrap">
+            <h3 class="serif text-[22px] text-[#2A241B]">State Teacher Award</h3>
+            <span class="mono-caps text-[#9C8E7A]">5 September 2024</span>
+          </div>
+          <p class="text-[#2A241B] mt-2 text-[15px]">Himachal Pradesh Government — recognized for outstanding contributions in ICT integration, teacher training, and innovative classroom strategies.</p>
+        </div>
+      </div>
+    </div>
+    <!-- 3 -->
+    <div class="card rounded-[6px] p-7 fade-up">
+      <div class="flex items-start gap-5">
+        <div class="text-[#1F4D3D] shrink-0 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"/></svg>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between gap-3 flex-wrap">
+            <h3 class="serif text-[22px] text-[#2A241B]">State Government Fellowship — Singapore</h3>
+            <span class="mono-caps text-[#9C8E7A]">April 2024</span>
+          </div>
+          <p class="text-[#2A241B] mt-2 text-[15px]">Selected for the Principals Academy Singapore workshop on 21st Century Teaching and Learning Practices in the Classroom.</p>
+        </div>
+      </div>
+    </div>
+    <!-- 4 -->
+    <div class="card rounded-[6px] p-7 fade-up">
+      <div class="flex items-start gap-5">
+        <div class="text-[#1F4D3D] shrink-0 mt-1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        </div>
+        <div>
+          <div class="flex items-baseline justify-between gap-3 flex-wrap">
+            <h3 class="serif text-[22px] text-[#2A241B]">NCERT National Recognition</h3>
+            <span class="mono-caps text-[#9C8E7A]">November 2020</span>
+          </div>
+          <p class="text-[#2A241B] mt-2 text-[15px]">Valuable Contributor at National Level as Member, National Mathematics Syllabi Review Committee, Higher Secondary Level — NCERT, New Delhi.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="caption mt-8 text-center md:text-left fade-up">Also: National e-Innovative Teacher Award 2016 by Global Bharti Foundations, Hamirpur HP.</p>
+</section>
+
+<div class="hairline max-w-7xl mx-auto"></div>
+
+<!-- ============ PUBLICATIONS ============ -->
+<section id="publications" class="max-w-4xl mx-auto px-5 md:px-8 py-20 md:py-28">
+  <div class="mb-12 fade-up">
+    <p class="smallcaps text-[#1F4D3D]">International Publications</p>
+    <h2 class="serif section-h text-[#2A241B] mt-3 italic">Writing on mathematics education and global classroom practice.</h2>
+  </div>
+
+  <ol class="space-y-0">
+    <li class="grid grid-cols-[auto_1fr] gap-5 py-7 border-t border-[#D9CFB8] fade-up">
+      <span class="mono text-[#7A2E2E] text-[15px] mt-1">01</span>
+      <div>
+        <a href="https://www.worldwidejournals.com/global-journal-for-research-analysis-GJRA/article/innovative-practices-in-mathematics-education-covering-gaps-in-math-learning/MjA2Mzk=/?is=1" target="_blank" rel="noopener" class="serif italic text-[20px] md:text-[22px] text-[#2A241B] hover:text-[#7A2E2E] block leading-snug">Innovative Practices in Mathematics Education, Covering Gaps in Math Learning</a>
+        <p class="mono-caps text-[#6B5D4E] mt-2">GJRA · Volume 8, Issue 3 · March 2019 · ISSN 2277-8160</p>
+        <p class="text-[#6B5D4E] mt-2 text-[15px]">Bridging math learning gaps from lower-grade content at the high school level.</p>
+      </div>
+    </li>
+    <li class="grid grid-cols-[auto_1fr] gap-5 py-7 border-t border-[#D9CFB8] fade-up">
+      <span class="mono text-[#7A2E2E] text-[15px] mt-1">02</span>
+      <div>
+        <a href="https://www.worldwidejournals.com/global-journal-for-research-analysis-GJRA/article/a-study-of-difficulties-faced-by-children-in-learning-limit-at-class-xi-and-its-remedial-measure/MjEyNzA=/?is=1" target="_blank" rel="noopener" class="serif italic text-[20px] md:text-[22px] text-[#2A241B] hover:text-[#7A2E2E] block leading-snug">A Study of Difficulties Faced By Children in Learning Limit at Class XI and Its Remedial Measure</a>
+        <p class="mono-caps text-[#6B5D4E] mt-2">GJRA · Volume 10, Issue 9 · September 2021 · ISSN 2277-8160</p>
+        <p class="text-[#6B5D4E] mt-2 text-[15px]">Analyzed learning challenges in calculus concepts and proposed remedial measures.</p>
+      </div>
+    </li>
+    <li class="grid grid-cols-[auto_1fr] gap-5 py-7 border-t border-[#D9CFB8] fade-up">
+      <span class="mono text-[#7A2E2E] text-[15px] mt-1">03</span>
+      <div>
+        <a href="https://fulbrighternetwork.com/news/378362" target="_blank" rel="noopener" class="serif italic text-[20px] md:text-[22px] text-[#2A241B] hover:text-[#7A2E2E] block leading-snug">Interesting Observations on the US School Classroom</a>
+        <p class="mono-caps text-[#6B5D4E] mt-2">Fulbrighter UK · December 2020</p>
+        <p class="text-[#6B5D4E] mt-2 text-[15px]">Reflections from the Fulbright TEA program at UNCW.</p>
+      </div>
+    </li>
+    <li class="grid grid-cols-[auto_1fr] gap-5 py-7 border-t border-[#D9CFB8] fade-up">
+      <span class="mono text-[#7A2E2E] text-[15px] mt-1">04</span>
+      <div>
+        <a href="https://fulbrighternetwork.com/news/387846" target="_blank" rel="noopener" class="serif italic text-[20px] md:text-[22px] text-[#2A241B] hover:text-[#7A2E2E] block leading-snug">My Journey Through the University of North Carolina Wilmington</a>
+        <p class="mono-caps text-[#6B5D4E] mt-2">Fulbrighter UK · February 2021</p>
+      </div>
+    </li>
+    <li class="grid grid-cols-[auto_1fr] gap-5 py-7 border-t border-b border-[#D9CFB8] fade-up">
+      <span class="mono text-[#7A2E2E] text-[15px] mt-1">05</span>
+      <div>
+        <a href="https://fulbrighternetwork.com/news/419342" target="_blank" rel="noopener" class="serif italic text-[20px] md:text-[22px] text-[#2A241B] hover:text-[#7A2E2E] block leading-snug">My School: John T. Hoggard High School Wilmington</a>
+        <p class="mono-caps text-[#6B5D4E] mt-2">Fulbrighter UK · April 2021</p>
+      </div>
+    </li>
+  </ol>
+  <p class="caption mt-8 fade-up">Plus five additional research papers presented at NCERT New Delhi and Regional Institutes of Education, including one on the Indian Knowledge System at the University of Baroda, Gujarat.</p>
+</section>
+
+<div class="hairline max-w-7xl mx-auto"></div>
+
+<!-- ============ EXPERIENCE ============ -->
+<section id="experience" class="max-w-7xl mx-auto px-5 md:px-8 py-20 md:py-28">
+  <div class="mb-14 fade-up">
+    <p class="smallcaps text-[#1F4D3D]">Work Experience · 1995–Present</p>
+    <h2 class="serif section-h text-[#2A241B] mt-3 italic max-w-3xl">Three decades. Six schools. One Principal's office.</h2>
+  </div>
+
+  <div class="timeline">
+    <!-- Row 1 -->
+    <div class="tl-row grid md:grid-cols-2 gap-x-12 mb-12 fade-up">
+      <span class="tl-dot"></span>
+      <div class="md:text-right md:pr-12 pl-10 md:pl-0">
+        <span class="mono-caps text-[#1F4D3D]">Dec 2022 – Present</span>
+      </div>
+      <div class="md:pl-12 pl-10 mt-2 md:mt-0">
+        <div class="tl-card">
+          <h3 class="serif text-[22px] text-[#2A241B]">Principal</h3>
+          <p class="text-[#1F4D3D] font-medium text-[15px]">Government Girls Senior Secondary School Indora, Kangra</p>
+          <p class="text-[#6B5D4E] mt-2 text-[15px]">Leading the school's transformation through ICT integration and project-based learning. Mentoring students and staff through academic and career guidance.</p>
+        </div>
+        <div class="mt-3 ml-3 pl-5 border-l border-[#D9CFB8]">
+          <p class="smallcaps text-[#9C8E7A] text-[0.7rem]">Additional Charge</p>
+          <p class="mono-caps text-[#1F4D3D] mt-1">Jan 2024 – Sept 2024</p>
+          <p class="serif text-[18px] text-[#2A241B] mt-1">Principal cum Block Project Officer</p>
+          <p class="text-[#6B5D4E] text-[14px]">Government Model Sr. Secondary School Indora, Kangra</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2 -->
+    <div class="tl-row grid md:grid-cols-2 gap-x-12 mb-12 fade-up">
+      <span class="tl-dot"></span>
+      <div class="md:order-2 md:pl-12 pl-10">
+        <span class="mono-caps text-[#1F4D3D]">2021 – 2022</span>
+      </div>
+      <div class="md:order-1 md:text-right md:pr-12 pl-10 md:pl-0 mt-2 md:mt-0">
+        <div class="tl-card">
+          <h3 class="serif text-[22px] text-[#2A241B]">Lecturer in Mathematics</h3>
+          <p class="text-[#1F4D3D] font-medium text-[15px]">Government Senior Secondary School Makroli, Kangra</p>
+          <p class="text-[#6B5D4E] mt-2 text-[15px]">Integrated technology in the classroom. Facilitated initial digital literacy exposure for rural students.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3 -->
+    <div class="tl-row grid md:grid-cols-2 gap-x-12 mb-12 fade-up">
+      <span class="tl-dot"></span>
+      <div class="md:text-right md:pr-12 pl-10 md:pl-0">
+        <span class="mono-caps text-[#1F4D3D]">2012 – 2021</span>
+      </div>
+      <div class="md:pl-12 pl-10 mt-2 md:mt-0">
+        <div class="tl-card">
+          <h3 class="serif text-[22px] text-[#2A241B]">Lecturer in Mathematics</h3>
+          <p class="text-[#1F4D3D] font-medium text-[15px]">Government Model S.M. Senior Secondary School Indora, Kangra</p>
+          <p class="text-[#6B5D4E] mt-2 text-[15px]">Established a virtual classroom with 75+ video conferencing sessions. Conducted state-level online Math Olympiads. Connected rural students with global educationists.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 4 -->
+    <div class="tl-row grid md:grid-cols-2 gap-x-12 mb-12 fade-up">
+      <span class="tl-dot"></span>
+      <div class="md:order-2 md:pl-12 pl-10">
+        <span class="mono-caps text-[#1F4D3D]">2001 – 2012</span>
+      </div>
+      <div class="md:order-1 md:text-right md:pr-12 pl-10 md:pl-0 mt-2 md:mt-0">
+        <div class="tl-card">
+          <h3 class="serif text-[22px] text-[#2A241B]">Lecturer in Mathematics</h3>
+          <p class="text-[#1F4D3D] font-medium text-[15px]">Government Senior Secondary School Giora, Kangra</p>
+          <p class="text-[#6B5D4E] mt-2 text-[15px]">Developed an ICT lab in collaboration with the Education Department. Trained 150+ students annually in basic computer operations.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 5 -->
+    <div class="tl-row grid md:grid-cols-2 gap-x-12 mb-12 fade-up">
+      <span class="tl-dot"></span>
+      <div class="md:text-right md:pr-12 pl-10 md:pl-0">
+        <span class="mono-caps text-[#1F4D3D]">1999 – 2001</span>
+      </div>
+      <div class="md:pl-12 pl-10 mt-2 md:mt-0">
+        <div class="tl-card">
+          <h3 class="serif text-[22px] text-[#2A241B]">Lecturer in Mathematics</h3>
+          <p class="text-[#1F4D3D] font-medium text-[15px]">Government Senior Secondary School Masroond, Chamba</p>
+          <p class="text-[#6B5D4E] mt-2 text-[15px]">Focused on real-life applications of mathematics and addressing learning gaps in rural schools.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 6 -->
+    <div class="tl-row grid md:grid-cols-2 gap-x-12 fade-up">
+      <span class="tl-dot"></span>
+      <div class="md:order-2 md:pl-12 pl-10">
+        <span class="mono-caps text-[#1F4D3D]">1995 – 1999</span>
+      </div>
+      <div class="md:order-1 md:text-right md:pr-12 pl-10 md:pl-0 mt-2 md:mt-0">
+        <div class="tl-card">
+          <h3 class="serif text-[22px] text-[#2A241B]">TGT Mathematics</h3>
+          <p class="text-[#1F4D3D] font-medium text-[15px]">Jawahar Navodaya Vidyalaya Sarol, Chamba</p>
+          <p class="text-[#6B5D4E] mt-2 text-[15px]">Mentored students for national-level competitive exams. Served as Housemaster and led awareness activities.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="hairline max-w-7xl mx-auto"></div>
+
+<!-- ============ CONFERENCES ============ -->
+<section id="conferences" class="max-w-7xl mx-auto px-5 md:px-8 py-20 md:py-28">
+  <div class="grid md:grid-cols-2 gap-12 md:gap-20">
+    <div class="fade-up">
+      <p class="smallcaps text-[#1F4D3D]">Conferences & Trainings</p>
+      <h2 class="serif section-h text-[#2A241B] mt-3 italic">As a resource person and learner — across India and abroad.</h2>
+      <p class="text-[#6B5D4E] mt-6 text-[16px]">Trained more than 6,700 teachers across Himachal Pradesh as a Resource Person under government programs including SSA, RMSA, NISHTHA, NIPUN, and STARS — with a special focus on mathematics teachers and the responsible use of ICT in the classroom.</p>
+    </div>
+    <ul class="fade-up">
+      <li class="py-3.5 border-t border-[#D9CFB8] grid grid-cols-[110px_1fr] gap-4 items-baseline"><span class="mono-caps text-[#7A2E2E] text-[0.72rem]">Since 2011</span><span class="text-[#2A241B] text-[15px]">Resource Person to 6,700+ teachers across Himachal Pradesh</span></li>
+      <li class="py-3.5 border-t border-[#D9CFB8] grid grid-cols-[110px_1fr] gap-4 items-baseline"><span class="mono-caps text-[#7A2E2E] text-[0.72rem]">Jun & Dec 2011</span><span class="text-[#2A241B] text-[15px]">School Leadership Program, IIT New Delhi</span></li>
+      <li class="py-3.5 border-t border-[#D9CFB8] grid grid-cols-[110px_1fr] gap-4 items-baseline"><span class="mono-caps text-[#7A2E2E] text-[0.72rem]">May 2014</span><span class="text-[#2A241B] text-[15px]">Content Development Workshop, CIET NCERT, New Delhi</span></li>
+      <li class="py-3.5 border-t border-[#D9CFB8] grid grid-cols-[110px_1fr] gap-4 items-baseline"><span class="mono-caps text-[#7A2E2E] text-[0.72rem]">2015</span><span class="text-[#2A241B] text-[15px]">Key Resource Person, Secondary School Mathematics Training, DESM NCERT</span></li>
+      <li class="py-3.5 border-t border-[#D9CFB8] grid grid-cols-[110px_1fr] gap-4 items-baseline"><span class="mono-caps text-[#7A2E2E] text-[0.72rem]">2020</span><span class="text-[#2A241B] text-[15px]">Fulbright Teaching Excellence and Achievement Program, UNCW Wilmington</span></li>
+      <li class="py-3.5 border-t border-[#D9CFB8] grid grid-cols-[110px_1fr] gap-4 items-baseline"><span class="mono-caps text-[#7A2E2E] text-[0.72rem]">Nov 2020</span><span class="text-[#2A241B] text-[15px]">National Mathematics Syllabi Review Committee Member, NCERT</span></li>
+      <li class="py-3.5 border-t border-[#D9CFB8] grid grid-cols-[110px_1fr] gap-4 items-baseline"><span class="mono-caps text-[#7A2E2E] text-[0.72rem]">Feb 2022</span><span class="text-[#2A241B] text-[15px]">Learning Outcome–Based Activities (Matrices, 3D Geometry), DESM NCERT</span></li>
+      <li class="py-3.5 border-t border-[#D9CFB8] grid grid-cols-[110px_1fr] gap-4 items-baseline"><span class="mono-caps text-[#7A2E2E] text-[0.72rem]">Apr 2024</span><span class="text-[#2A241B] text-[15px]">21st Century Teaching & Learning Practices, Principals Academy Singapore</span></li>
+      <li class="py-3.5 border-t border-b border-[#D9CFB8] grid grid-cols-[110px_1fr] gap-4 items-baseline"><span class="mono-caps text-[#7A2E2E] text-[0.72rem]">Nov 21–23, 2024</span><span class="text-[#2A241B] text-[15px]">Quality Education in Himachal Pradesh, HIPA Shimla (STARS / SSA)</span></li>
+    </ul>
+  </div>
+</section>
+
+<div class="hairline max-w-7xl mx-auto"></div>
+
+<!-- ============ EDUCATION ============ -->
+<section id="education" class="max-w-7xl mx-auto px-5 md:px-8 py-20 md:py-28">
+  <div class="mb-12 fade-up">
+    <p class="smallcaps text-[#1F4D3D]">Education</p>
+    <h2 class="serif section-h text-[#2A241B] mt-3 italic">From Mandi to Shimla.</h2>
+  </div>
+
+  <div class="grid md:grid-cols-2 gap-x-12 gap-y-7">
+    <div class="fade-up">
+      <h3 class="serif text-[22px] text-[#2A241B]">Master of Science in Mathematics</h3>
+      <p class="mono-caps text-[#6B5D4E] mt-1.5">Himachal Pradesh University, Shimla · 1993–1995</p>
+    </div>
+    <div class="fade-up">
+      <h3 class="serif text-[22px] text-[#2A241B]">Bachelor of Education</h3>
+      <p class="mono-caps text-[#6B5D4E] mt-1.5">Himachal Pradesh University, Shimla · 1992–1993</p>
+    </div>
+    <div class="fade-up">
+      <h3 class="serif text-[22px] text-[#2A241B]">Certificate Course in German Language</h3>
+      <p class="mono-caps text-[#6B5D4E] mt-1.5">Himachal Pradesh University · 1993–1994</p>
+    </div>
+    <div class="fade-up">
+      <h3 class="serif text-[22px] text-[#2A241B]">B.Sc. (Physics, Chemistry, Mathematics)</h3>
+      <p class="mono-caps text-[#6B5D4E] mt-1.5">MCM DAV College, Kangra · 1989–1992</p>
+    </div>
+    <div class="fade-up">
+      <h3 class="serif text-[22px] text-[#2A241B]">Diploma in Computer Basics</h3>
+      <p class="mono-caps text-[#6B5D4E] mt-1.5">Apple Industries, Kangra · 1991–1992</p>
+    </div>
+    <div class="fade-up">
+      <h3 class="serif text-[22px] text-[#2A241B]">10+2 (PCM)</h3>
+      <p class="mono-caps text-[#6B5D4E] mt-1.5">Post Graduate College, Mandi · 1986–1989</p>
+    </div>
+    <div class="fade-up">
+      <h3 class="serif text-[22px] text-[#2A241B]">Class 10</h3>
+      <p class="mono-caps text-[#6B5D4E] mt-1.5">Government High School, Kataula, Mandi</p>
+    </div>
+  </div>
+</section>
+
+<div class="hairline max-w-7xl mx-auto"></div>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills" class="max-w-5xl mx-auto px-5 md:px-8 py-20 md:py-28">
+  <div class="mb-12 fade-up">
+    <p class="smallcaps text-[#1F4D3D]">Skills & Expertise</p>
+    <h2 class="serif section-h text-[#2A241B] mt-3 italic">What I bring to the classroom and the principal's office.</h2>
+  </div>
+
+  <div class="fade-up">
+    <div class="grid grid-cols-1 md:grid-cols-[260px_1fr]">
+      <div class="md:contents">
+        <div class="serif text-[#1F4D3D] text-[20px] py-5 border-t border-[#D9CFB8] md:pr-6">Languages</div>
+        <div class="text-[#2A241B] py-5 border-t border-[#D9CFB8]">Hindi · English · Punjabi · German (Basic)</div>
+      </div>
+      <div class="md:contents">
+        <div class="serif text-[#1F4D3D] text-[20px] py-5 border-t border-[#D9CFB8] md:pr-6">Educational Leadership</div>
+        <div class="text-[#2A241B] py-5 border-t border-[#D9CFB8]">School administration · Teaching expertise · Strategic planning</div>
+      </div>
+      <div class="md:contents">
+        <div class="serif text-[#1F4D3D] text-[20px] py-5 border-t border-[#D9CFB8] md:pr-6">Counselling & Guidance</div>
+        <div class="text-[#2A241B] py-5 border-t border-[#D9CFB8]">Student advisement · Career counselling · Project-based learning · Global cultural exchanges</div>
+      </div>
+      <div class="md:contents">
+        <div class="serif text-[#1F4D3D] text-[20px] py-5 border-t border-[#D9CFB8] md:pr-6">Technology</div>
+        <div class="text-[#2A241B] py-5 border-t border-[#D9CFB8]">ICT integration · Virtual classroom management · Technology-based teaching</div>
+      </div>
+      <div class="md:contents">
+        <div class="serif text-[#1F4D3D] text-[20px] py-5 border-t border-[#D9CFB8] md:pr-6">Project Management</div>
+        <div class="text-[#2A241B] py-5 border-t border-[#D9CFB8]">International grant proposals · Student-led initiatives · Program implementation</div>
+      </div>
+      <div class="md:contents">
+        <div class="serif text-[#1F4D3D] text-[20px] py-5 border-t border-b border-[#D9CFB8] md:pr-6">Research & Training</div>
+        <div class="text-[#2A241B] py-5 border-t border-b border-[#D9CFB8]">Academic publishing · Teacher training · Curriculum development</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLLABORATION CALLOUT ============ -->
+<section class="bg-[#1F4D3D] text-[#F5F0E4] my-0">
+  <div class="max-w-3xl mx-auto px-5 md:px-8 py-20 md:py-24 text-center fade-up">
+    <h2 class="serif section-h italic">Open to collaboration.</h2>
+    <p class="mt-7 text-[#F5F0E4]/85 max-w-xl mx-auto text-[16px]">I welcome conversations on mathematics education, ICT integration in rural classrooms, teacher training, project-based learning, and global cultural exchange programs. If you're a school leader, teacher trainer, NGO, or fellow Fulbrighter — I'd love to hear from you.</p>
+    <div class="flex flex-wrap gap-3 justify-center mt-9">
+      <a href="#contact" class="btn btn-cream">Send a message</a>
+      <a href="https://www.linkedin.com" class="btn btn-cream-ghost">Connect on LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="max-w-7xl mx-auto px-5 md:px-8 py-20 md:py-28">
+  <div class="mb-14 fade-up">
+    <p class="smallcaps text-[#1F4D3D]">Get in Touch</p>
+    <h2 class="serif section-h text-[#2A241B] mt-3 italic">The best ways to reach me.</h2>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-8 mb-14 fade-up">
+    <div class="card rounded-[6px] p-7">
+      <div class="text-[#1F4D3D] mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </div>
+      <p class="smallcaps text-[#9C8E7A]">Send a Note</p>
+      <a href="#contactForm" class="serif text-[20px] text-[#2A241B] hover:text-[#7A2E2E] block mt-1">Use the form below →</a>
+      <p class="text-[#6B5D4E] text-[13px] mt-1">mohanhimachal@gmail.com</p>
+    </div>
+    <div class="card rounded-[6px] p-7">
+      <div class="text-[#1F4D3D] mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      </div>
+      <p class="smallcaps text-[#9C8E7A]">Phone</p>
+      <a href="tel:+919816262609" class="serif text-[20px] text-[#2A241B] hover:text-[#7A2E2E] block mt-1">+91-9816262609</a>
+    </div>
+    <div class="card rounded-[6px] p-7">
+      <div class="text-[#1F4D3D] mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <p class="smallcaps text-[#9C8E7A]">Location</p>
+      <p class="serif text-[20px] text-[#2A241B] mt-1">Indora, Kangra, Himachal Pradesh, India 176401</p>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap gap-x-7 gap-y-2 mb-14 fade-up">
+    <a href="https://www.linkedin.com" class="link-burgundy text-[14px] inline-flex items-center gap-1.5">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://www.facebook.com" class="link-burgundy text-[14px] inline-flex items-center gap-1.5">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      Facebook
+    </a>
+    <a href="https://mohanhimachal.github.io" class="link-burgundy text-[14px] inline-flex items-center gap-1.5">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+      School Website
+    </a>
+    <a href="mailto:mohanhimachal@gmail.com" class="link-burgundy text-[14px] inline-flex items-center gap-1.5">
+      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Email
+    </a>
+  </div>
+
+  <form id="contactForm" class="card rounded-[6px] p-7 md:p-9 fade-up max-w-3xl">
+    <p class="smallcaps text-[#1F4D3D] mb-6">Send a Note</p>
+    <div class="grid md:grid-cols-2 gap-5">
+      <label class="block">
+        <span class="smallcaps text-[#6B5D4E] text-[0.7rem]">Name</span>
+        <input required type="text" class="mt-2 w-full bg-transparent border-b border-[#D9CFB8] focus:border-[#1F4D3D] outline-none py-2 text-[#2A241B]" />
+      </label>
+      <label class="block">
+        <span class="smallcaps text-[#6B5D4E] text-[0.7rem]">Email</span>
+        <input required type="email" class="mt-2 w-full bg-transparent border-b border-[#D9CFB8] focus:border-[#1F4D3D] outline-none py-2 text-[#2A241B]" />
+      </label>
+    </div>
+    <label class="block mt-5">
+      <span class="smallcaps text-[#6B5D4E] text-[0.7rem]">Message</span>
+      <textarea required rows="4" class="mt-2 w-full bg-transparent border-b border-[#D9CFB8] focus:border-[#1F4D3D] outline-none py-2 text-[#2A241B] resize-none"></textarea>
+    </label>
+    <button type="submit" class="btn btn-primary mt-7">Send →</button>
+  </form>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="border-t border-[#D9CFB8] panel-warm no-print">
+  <div class="max-w-7xl mx-auto px-5 md:px-8 py-10 space-y-8">
+    <div class="flex items-center justify-between flex-wrap gap-4">
+      <div class="flex items-baseline gap-3">
+        <span class="serif text-[22px] text-[#2A241B]">Mohan Sharma</span>
+        <span class="caption text-[#6B5D4E]">Educational Leader & Mathematics Educator</span>
+      </div>
+    </div>
+    <div class="flex flex-wrap gap-x-6 gap-y-2 text-[14px] text-[#6B5D4E]">
+      <a href="#about" class="hover:text-[#7A2E2E]">About</a>
+      <a href="#projects" class="hover:text-[#7A2E2E]">Projects</a>
+      <a href="#publications" class="hover:text-[#7A2E2E]">Publications</a>
+      <a href="#experience" class="hover:text-[#7A2E2E]">Experience</a>
+      <a href="#awards" class="hover:text-[#7A2E2E]">Awards</a>
+      <a href="#education" class="hover:text-[#7A2E2E]">Education</a>
+      <a href="#contact" class="hover:text-[#7A2E2E]">Contact</a>
+    </div>
+    <div class="flex items-center justify-between flex-wrap gap-4 pt-6 border-t border-[#D9CFB8]">
+      <p class="text-[13px] text-[#9C8E7A]">© 2026 Mohan Sharma · Indora, Kangra, Himachal Pradesh, India 176401</p>
+      <div class="flex items-center gap-4 text-[#6B5D4E]">
+        <a href="https://www.linkedin.com" aria-label="LinkedIn" class="hover:text-[#7A2E2E]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="mailto:mohanhimachal@gmail.com" aria-label="Email" class="hover:text-[#7A2E2E]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </a>
+        <a href="https://www.facebook.com" aria-label="Facebook" class="hover:text-[#7A2E2E]">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<div id="toast" class="toast">Thank you — your message has been received.</div>
+
+<script>
+  // Mobile nav
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  navToggle.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+  document.querySelectorAll('.mob-link').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+  // Fade-up
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => io.observe(el));
+
+  // Active section highlight
+  const sections = ['about', 'projects', 'publications', 'experience', 'awards', 'education', 'contact']
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+  const navLinks = document.querySelectorAll('[data-nav]');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => sectionObserver.observe(s));
+
+  // Theme toggle (dark mode)
+  const themeToggle = document.getElementById('themeToggle');
+  const savedTheme = (() => { try { return localStorage.getItem('theme'); } catch (e) { return null; } })();
+  if (savedTheme === 'dark') document.body.classList.add('dark');
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    try { localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light'); } catch (e) {}
+  });
+
+  // Contact form
+  const form = document.getElementById('contactForm');
+  const toast = document.getElementById('toast');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    form.reset();
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
+  });
+</script>
+
 </body>
 </html>
